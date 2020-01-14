@@ -40,6 +40,7 @@ import ToolGroup from '@/views/components/dashboard/tool-group.vue';
 import ToolNav from '@/views/components/dashboard/tool-nav.vue';
 import DashboardItem from '@/views/components/dashboard/dashboard-item.vue';
 import DashboardComp from '@/views/components/dashboard/dashboard-comp.vue';
+import DashboardConfig from './dashboard-config';
 
 @Component({
   components: {
@@ -93,6 +94,8 @@ export default class Dashboard extends Vue {
     if (window.localStorage.getItem('dashboard')) {
       const data: string = `${window.localStorage.getItem('dashboard')}`;
       this.SET_COMPS_TREE(JSON.parse(data));
+    } else {
+      this.SET_COMPS_TREE(DashboardConfig);
     }
     this.handleOption();
     this.SET_EVENTS([this.handleRefresh]);
