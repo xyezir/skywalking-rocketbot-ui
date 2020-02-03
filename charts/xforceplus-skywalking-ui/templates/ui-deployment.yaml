@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+{{ include "service.labels.standard" . | indent 4 }}
+{{ include "service.logging.deployment.label" . | indent 4 }}
+    app: "{{ .Chart.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Values.ui.name }}"
+    heritage: "{{ .Release.Service }}"
+    release: "{{ .Release.Name }}"
+spec:
+  replicas: {{ .Values.ui.replicas }}
+  selector:
+    matchLabels:
+{{ include "service.labels.standard" . | indent 6 }}
+      app: "{{ .Chart.Name }}"
+      component: "{{ .Values.ui.name }}"
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+{{ include "service.labels.standard" . | indent 8 }}
+        app: "{{ .Chart.Name }}"
+        component: "{{ .Values.ui.name }}"
+        release: "{{ .Release.Name }}"
+        {{- if .Values.ui.podAnnotations }}
+      annotations:
+{{ toYaml .Values.ui.podAnnotations | indent 8 }}
+        {{- end }}
+    spec:
+      containers:
+      - name: {{ .Values.ui.name }}
+        image: {{ .Values.ui.image.repository }}:{{ .Chart.Version }}
+        imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.ui.service.internalPort }}
+          name: page
+{{- if .Values.ui.resources }}
+        resources:
+{{ toYaml .Values.ui.resources | indent 10 }}
+{{- end }}
+        env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef: 
+              fieldPath: status.hostIP
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_POD_SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+{{- range $name, $value := .Values.env }}
+{{- if not (empty $value) }}
+        - name: {{ $name | quote }}
+          value: {{ $value | quote }}
+{{- end }}
+{{- end }}

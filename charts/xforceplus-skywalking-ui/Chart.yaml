@@ -1,0 +1,16 @@
+apiVersion: v1
+description: Xforceplus Skywalking UI Helm chart for Kubernetes
+name: xforceplus-skywalking-ui
+home: http://gitlab.developer.xforcecloud.com/xf-v35-apm/xforceplus-skywalking-ui
+version: 0.1.0
+appVersion: 6.5.0
+icon: https://raw.githubusercontent.com/apache/skywalking-kubernetes/master/logo/sw-logo-for-chart.jpg
+sources:
+- http://gitlab.developer.xforcecloud.com/xf-v35-apm/xforceplus-skywalking-ui
+maintainers:
+- name: yechunan
+  email: yechunan@xforceplus.com
+dependencies:
+  - name: xforceplus-skywalking
+    version: ~6.5.0
+    repository: http://gitlab.developer.xforcecloud.com/xf-v35-apm/xforceplus-skywalking
