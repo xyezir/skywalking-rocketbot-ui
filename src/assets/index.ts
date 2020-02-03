@@ -18,6 +18,7 @@ import './svg/angle-double-left.svg';
 import './svg/angle-double-right.svg';
 import './svg/arrow-down.svg';
 import './svg/chart.svg';
+import './svg/performance.svg';
 import './svg/chevron-left.svg';
 import './svg/chevron-right.svg';
 import './svg/clear.svg';
@@ -62,3 +63,6 @@ import './svg/token.svg';
 import './svg/unlink.svg';
 import './svg/user.svg';
 import './svg/warning.svg';
+
+import './svg/caret-down.svg';
+import './svg/caret-up.svg';

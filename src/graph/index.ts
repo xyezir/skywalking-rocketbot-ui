@@ -21,12 +21,14 @@ import * as option from './query/option';
 import * as trace from './query/trace';
 import * as topology from './query/topology';
 import * as alarm from './query/alarm';
+import * as performance from './query/performance';
 
 const query: any = {
   ...option,
   ...trace,
   ...topology,
   ...alarm,
+  ...performance,
 };
 
 class Graph {
