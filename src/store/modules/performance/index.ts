@@ -42,7 +42,7 @@ const getters = {};
 
 // mutations
 const mutations: MutationTree<State> = {
-  [types.SET_SERVICES](state: State, data: Option[]): void {
+  [types.SET_PERFORMANCE_SERVICES](state: State, data: Option[]): void {
     state.services = [{ label: 'All', key: '' }].concat(data);
   },
   [types.SET_PERFORMANCE](state: State, data: PerformanceType[]): void {
@@ -57,7 +57,7 @@ const actions: ActionTree<State, any> = {
       .query('queryServices')
       .params(params)
       .then((res: AxiosResponse) => {
-        context.commit(types.SET_SERVICES, res.data.data.services);
+        context.commit(types.SET_PERFORMANCE_SERVICES, res.data.data.services);
       });
   },
   GET_PERFORMANCE(context: { commit: Commit }, params: any): Promise<void> {
