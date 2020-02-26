@@ -101,7 +101,7 @@
     ];
 
     private data: any[] = this.performances.map((pfm: any) => {
-      pfm.fail = pfm.count - pfm.match;
+      pfm.fail = pfm.total - pfm.match;
       pfm.percentage = (pfm.percentage / 100).toFixed(2);
       return pfm;
     });
