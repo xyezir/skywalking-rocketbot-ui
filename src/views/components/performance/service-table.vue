@@ -1,5 +1,5 @@
 <template>
-  <rk-table :data="data" :columns="columns" bordered :scroll="{ x: 1800 }"></rk-table>
+  <rk-table :data="data" :columns="columns" bordered :scroll="{ x: 1800 }" tableLayout="fixed"></rk-table>
 </template>
 
 <script lang="ts">

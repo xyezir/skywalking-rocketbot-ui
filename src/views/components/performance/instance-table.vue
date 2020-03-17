@@ -33,7 +33,7 @@
         key: 'attributes',
         title: 'Host',
         titleAlign: 'center',
-        columnAlign: 'center',
+        // columnAlign: 'center',
         ellipsis: true,
         sorter: true,
       },
@@ -114,6 +114,15 @@
     private data: any[] = this.performances.map((pfm: any) => {
       pfm.fail = pfm.total - pfm.match;
       pfm.percentage = (pfm.percentage / 100).toFixed(2);
+
+      const attribute = pfm.attributes.filter((attr) => {
+        return attr.name === 'ipv4s';
+      });
+      const newAttr = attribute.map((attr) => {
+        return attr.value;
+      });
+
+      pfm.attributes = newAttr.join(',');
       return pfm;
     });
   }

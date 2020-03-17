@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-v wrapper" style="flex-grow:1;height: 100%;">
+  <div class="flex-v rk-performance-wrapper">
     <div class="rk-performance-bar flex-v">
       <div class="ml-5 flex-h date-control">
         <span class="sm b grey mr-5">{{ this.$t('dateMode') }}:</span>
@@ -81,7 +81,7 @@
         >
       </span>
     </div>
-    <div class="performance-container clear" v-if="!isLoading">
+    <div class="performance-container flex-v" v-if="!isLoading">
       <service-table v-if="currentIndName === 'service'" :performances="rocketPerformance.performances"></service-table>
       <instance-table
         v-if="currentIndName === 'service_instance'"
@@ -248,11 +248,15 @@
   }
 </script>
 <style lang="scss">
+  .rk-performance-wrapper {
+    flex: 1;
+    flex-grow: 1;
+    height: 100%;
+    min-height: 0;
+  }
   .performance-container {
     overflow: hidden;
     padding: 20px 15px;
-    height: 100%;
-    flex-grow: 1;
   }
 
   .date-control {
