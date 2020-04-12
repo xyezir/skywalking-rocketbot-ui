@@ -89,6 +89,7 @@
       {
         key: 'p90',
         title: 'p90(ms)',
+        width: 100,
         sorter: true,
       },
       {
