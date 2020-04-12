@@ -21,7 +21,8 @@ import { Duration } from '@/types/global';
  * init or generate durationRow Obj and save localStorage.
  */
 const getDurationRow = (): Duration => {
-  const durationRowString = localStorage.getItem('durationRow');
+  // const durationRowString = localStorage.getItem('durationRow');
+  const durationRowString = '';
   let durationRow: Duration;
   if (durationRowString && durationRowString !== '') {
     durationRow = JSON.parse(durationRowString);
